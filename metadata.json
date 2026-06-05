@@ -1,0 +1,6 @@
+{
+  "name": "Smart Safety Helmet Presentation",
+  "description": "Graduation project presentation for an IoT-Based Wearable Safety Monitoring System.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
