@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
-import { Hexagon, Lock } from 'lucide-react';
+import { Hexagon, Lock, ShieldAlert } from 'lucide-react';
 
 interface PresentationHubProps {
   totalSlides: number;
   activeSlide: number;
   onNodeClick: (index: number) => void;
   titles: string[];
+  onBackupClick?: () => void;
 }
 
-export function PresentationHub({ totalSlides, activeSlide, onNodeClick, titles }: PresentationHubProps) {
+export function PresentationHub({ totalSlides, activeSlide, onNodeClick, titles, onBackupClick }: PresentationHubProps) {
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
@@ -160,6 +161,25 @@ export function PresentationHub({ totalSlides, activeSlide, onNodeClick, titles 
               </React.Fragment>
             );
           })}
+
+          {/* Backup Slide Button (Distinct color: yellow/light-blue and near the nodes) */}
+          {onBackupClick && (
+            <motion.div
+               initial={{ opacity: 0, scale: 0 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ delay: 1, type: "spring", stiffness: 200 }}
+               className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+               style={{ left: getOrbitalPosition(3, totalSlides, radius - 100).x, top: getOrbitalPosition(3, totalSlides, radius - 100).y }} // Place it slightly inside the circle
+            >
+               <button
+                  onClick={onBackupClick}
+                  className="bg-amber-100 hover:bg-amber-200 text-amber-800 border-[3px] border-amber-300 w-12 h-12 rounded-full shadow-[0_0_20px_rgba(252,211,77,0.4)] transform hover:scale-110 transition-all flex items-center justify-center group"
+                  title="Q&A Slide"
+               >
+                  <span className="text-[14px] font-black uppercase tracking-wider leading-none text-amber-900 mt-0.5">QA</span>
+               </button>
+            </motion.div>
+          )}
         </div>
       )}
     </div>

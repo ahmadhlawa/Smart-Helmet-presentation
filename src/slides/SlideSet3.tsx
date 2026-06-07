@@ -6,7 +6,6 @@ import { Layers, Network, Server, UserCheck, AlertTriangle, Zap, Cpu, DollarSign
 
 export function Slide11() {
   const layers = [
-    { title: "Supervisor Layer", items: ["Monitoring", "Emergency Response"], icon: <UserCheck className="text-blue-600"/> },
     { title: "Dashboard Layer", items: ["Readings", "Alerts", "Worker Status", "Location"], icon: <Server className="text-indigo-600"/> },
     { title: "Processing Layer", items: ["Rule-based Hazard Detection"], icon: <Cpu className="text-emerald-600"/> },
     { title: "Communication Layer", items: ["Wi-Fi Data Transmission"], icon: <Network className="text-amber-500"/> },

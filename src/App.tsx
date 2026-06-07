@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Navigation } from './components/Navigation';
 import { PresentationHub } from './components/PresentationHub';
+import { BackupSlide } from './slides/BackupSlide';
 
 // Slides
 import { Slide01, Slide02, Slide03, Slide04 } from './slides/SlideSet1';
@@ -135,6 +136,7 @@ export default function App() {
                  activeSlide={currentSlide} 
                  onNodeClick={handleNodeClick}
                  titles={slideTitles}
+                 onBackupClick={() => setShowFloatSlide(true)}
               />
             </motion.div>
           ) : (
@@ -161,37 +163,9 @@ export default function App() {
         isHub={viewMode === 'hub'}
       />
 
-      {/* Floating Button for Extra Slide */}
-      <button 
-        onClick={() => setShowFloatSlide(true)}
-        className="absolute bottom-6 left-6 z-50 bg-white hover:bg-slate-50 border border-slate-200 text-slate-500 hover:text-blue-600 p-3 rounded-full shadow-sm hover:shadow transition-all group"
-        title="Extra Float Slide"
-      >
-         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-      </button>
-
-      {/* Extra Float Slide Modal */}
       <AnimatePresence>
          {showFloatSlide && (
-            <motion.div 
-               initial={{ opacity: 0, y: 50, scale: 0.95 }} 
-               animate={{ opacity: 1, y: 0, scale: 1 }} 
-               exit={{ opacity: 0, y: 50, scale: 0.95 }}
-               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-               className="fixed inset-0 z-[60] bg-white flex flex-col p-8"
-            >
-               <button 
-                  onClick={() => setShowFloatSlide(false)}
-                  className="absolute top-8 right-8 text-slate-400 hover:text-red-500 bg-slate-50 hover:bg-red-50 p-3 rounded-full transition-colors z-50"
-               >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-               </button>
-               
-               <div className="flex-1 w-full h-full flex flex-col items-center justify-center bg-slate-50 border-2 border-dashed border-slate-300 rounded-3xl p-12">
-                  <h2 className="text-4xl font-display font-bold text-slate-800 mb-6">Extra Information</h2>
-                  <p className="text-xl text-slate-500 max-w-2xl text-center">I will update this slide later with the final content.</p>
-               </div>
-            </motion.div>
+            <BackupSlide onClose={() => setShowFloatSlide(false)} />
          )}
       </AnimatePresence>
     </div>

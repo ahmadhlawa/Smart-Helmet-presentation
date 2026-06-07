@@ -39,13 +39,11 @@ export function Slide16() {
 export function Slide17() {
   const roadmap = [
     "Improve battery life.",
-    "Enhance GPS accuracy.",
-    "Improve fall detection algorithm.",
+    "Add indoor tracking to improve worker location algorithms.",
     "Add mobile push notifications.",
     "Design a custom PCB.",
     "Improve helmet enclosure.",
-    "Support multiple helmets.",
-    "Add historical reports and analytics.",
+    "Enhance historical reports and analytics with a full embedded database.",
     "Explore AI-based anomaly detection."
   ];
 

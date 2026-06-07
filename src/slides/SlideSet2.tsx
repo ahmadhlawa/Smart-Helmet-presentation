@@ -11,8 +11,7 @@ export function Slide06() {
     { text: "Activate buzzer and LED alerts", icon: BellRing },
     { text: "Send data through Wi-Fi", icon: Wifi },
     { text: "Display readings on the dashboard", icon: LayoutDashboard },
-    { text: "Show alerts and worker status", icon: ShieldAlert },
-    { text: "Support supervisor monitoring", icon: Eye }
+    { text: "Show alerts and worker status to supervisors", icon: ShieldAlert }
   ];
 
   return (
@@ -44,12 +43,12 @@ export function Slide06() {
 
 export function Slide07() {
   const attrs = [
-    { name: "Reliability", desc: "Stable readings and alert behavior", icon: ShieldCheck },
-    { name: "Real-time response", desc: "Fast data updates and alerts", icon: Zap },
-    { name: "Usability", desc: "Clear dashboard and readable alerts", icon: LayoutDashboard },
-    { name: "Maintainability", desc: "Easy to modify sensors and thresholds", icon: Cog },
-    { name: "Wearability", desc: "Safe and practical component placement", icon: Smartphone },
-    { name: "Security", desc: "Controlled access to worker data", icon: Lock }
+    { name: "Reliability", desc: "Stable readings and alert behavior", hoverDesc: "Stable sensor readings and reliable alert generation.", icon: ShieldCheck },
+    { name: "Real-Time Response", desc: "Fast data updates and alerts", hoverDesc: "Dashboard response within approximately 0.5 seconds.", icon: Zap },
+    { name: "Usability", desc: "Clear dashboard and readable alerts", hoverDesc: "nothing new or complex!", icon: LayoutDashboard },
+    { name: "Maintainability", desc: "Easy to modify sensors and thresholds", hoverDesc: "Easy sensor replacement and threshold adjustment.", icon: Cog },
+    { name: "Wearability", desc: "Safe and practical component placement", hoverDesc: "Lightweight design suitable for continuous use.", icon: Smartphone },
+    { name: "Security", desc: "Controlled access to worker data", hoverDesc: "Admin login authentication and secure communication protocols.", icon: Lock }
   ];
 
   return (
@@ -64,13 +63,20 @@ export function Slide07() {
                      initial={{ opacity: 0, scale: 0.9 }}
                      animate={{ opacity: 1, scale: 1 }}
                      transition={{ delay: 0.1 * i }}
-                     className="flex flex-col items-center text-center p-10 bg-white border border-slate-200 rounded-3xl shadow-sm border-t-8 border-t-amber-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                     className="group flex flex-col items-center text-center p-8 bg-white border border-slate-200 rounded-3xl shadow-sm border-t-8 border-t-amber-400 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                   >
-                     <div className="w-20 h-20 rounded-full bg-amber-50 flex items-center justify-center mb-6 text-amber-500">
+                     <div className="w-20 h-20 rounded-full bg-amber-50 flex items-center justify-center mb-6 text-amber-500 transition-colors duration-300 group-hover:bg-amber-100 group-hover:scale-110">
                         <Icon className="w-10 h-10" />
                      </div>
                      <h3 className="text-2xl font-bold text-slate-800 mb-4">{attr.name}</h3>
-                     <p className="text-lg text-slate-600 font-medium leading-relaxed">{attr.desc}</p>
+                     <div className="relative w-full h-20 flex items-center justify-center overflow-visible">
+                        <p className="text-lg text-slate-600 font-medium leading-relaxed absolute top-0 w-full transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 group-hover:translate-y-2 flex items-center justify-center h-full">
+                           {attr.desc}
+                        </p>
+                        <p className="text-lg text-amber-700 font-bold leading-relaxed absolute top-0 w-full transition-all duration-300 opacity-0 scale-95 -translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 flex items-center justify-center h-full text-balance">
+                           {attr.hoverDesc}
+                        </p>
+                     </div>
                   </motion.div>
                );
             })}
